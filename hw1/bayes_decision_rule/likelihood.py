@@ -13,11 +13,12 @@ def likelihood(x):
     C, N = x.shape
     l = np.zeros((C, N))
     # begin answer
-    total = np.sum(x, axis=0)
+    each_class_number = np.sum(x, axis=1)
 
+    print(each_class_number)
     for i in range(C):
         for j in range(N):
-            l[i][j] = x[i][j] / total[j]
+            l[i][j] = x[i][j] / each_class_number[i]
     # end answer
 
     return l

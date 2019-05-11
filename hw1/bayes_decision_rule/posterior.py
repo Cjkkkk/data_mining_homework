@@ -16,7 +16,6 @@ def posterior(x):
     total = np.sum(x)
 
     prior = each_class_number / total
-    evidence = np.sum(l)
     print(each_class_number, total, prior)
     p = np.zeros((C, N))
     for i in range(C):
