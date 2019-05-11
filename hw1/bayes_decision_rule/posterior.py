@@ -16,12 +16,11 @@ def posterior(x):
     total = np.sum(x)
 
     prior = each_class_number / total
-    print(each_class_number, total, prior)
     p = np.zeros((C, N))
     for i in range(C):
         for j in range(N):
             p[i][j] = l[i][j] * prior[i]
-    p = p / sum(p)
+    # p = p / sum(p)
     # begin answer
     # end answer
     
