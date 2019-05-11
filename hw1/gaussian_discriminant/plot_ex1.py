@@ -10,7 +10,7 @@ figure, subfigs = plt.subplots(2, 4, figsize=(16, 8), tight_layout=True, dpi=100
 def plot_ex1(mu0, Sigma0, mu1, Sigma1, phi, fig_title, pos):
     fig = subfigs[(pos - 1) // 4][(pos - 1) % 4]
     fig.cla()
-    N = 100
+    N = 1000
 
     # generate data
     X0 = np.random.multivariate_normal(mu0.flatten(), Sigma0, round((1 - phi) * N)).T

@@ -22,9 +22,7 @@ def gaussian_pos_prob(X, Mu, Sigma, Phi):
     K = Phi.shape[0]
     # Your code HERE
     # begin answer
-    # print(X.shape, Mu, Sigma.shape, Phi)
-    # for i in range(K):
-    #     print(Sigma[:, :, i])
+
     det = [np.linalg.det(Sigma[:, :, k]) for k in range(K)]
     inv = [np.linalg.inv(Sigma[:, :, j]) for j in range(K)]
     
@@ -52,7 +50,7 @@ def gaussian_pos_prob(X, Mu, Sigma, Phi):
         p[i, :] = p[i, :] / np.sum(p[i, :])
 
     # end answer
-    print(p)
+    # print(p)
     return p
 
 
