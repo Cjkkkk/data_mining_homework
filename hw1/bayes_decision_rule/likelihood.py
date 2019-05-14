@@ -19,5 +19,5 @@ def likelihood(x):
         for j in range(N):
             l[i][j] = x[i][j] / each_class_number[i]
     # end answer
-    print(l)
+    # print(l)
     return l
