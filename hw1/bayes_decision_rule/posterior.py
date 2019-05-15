@@ -20,8 +20,7 @@ def posterior(x):
     for i in range(C):
         for j in range(N):
             p[i][j] = l[i][j] * prior[i]
+    
     p = p / sum(p)
-    # begin answer
-    # end answer
     
     return p
