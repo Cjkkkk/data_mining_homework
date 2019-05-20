@@ -11,6 +11,18 @@ def linear_regression(X, y):
     '''
     P, N = X.shape
     w = np.zeros((P + 1, 1))
+    D = np.vstack((np.ones((1, N)), X))
+
+    in_matrix = np.zeros((P, N))
+    for i in range(N):
+        if y[0, i] > 0:
+            pos = 1
+        else:
+            pos = 0
+        in_matrix[pos, i] = 1
+
+    w = np.matmul(np.matmul(np.linalg.inv(np.matmul(D, D.T)), D), in_matrix.T)
+    # print(w)
     # YOUR CODE HERE
     # begin answer
     # end answer
