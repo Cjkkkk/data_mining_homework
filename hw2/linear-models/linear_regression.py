@@ -22,8 +22,7 @@ def linear_regression(X, y):
         in_matrix[pos, i] = 1
 
     w = np.matmul(np.matmul(np.linalg.inv(np.matmul(D, D.T)), D), in_matrix.T)
+    w = w[:, 1] - w[:, 0]
     # print(w)
-    # YOUR CODE HERE
-    # begin answer
-    # end answer
+
     return w
