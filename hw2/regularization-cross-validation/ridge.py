@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def ridge(X, y, lmbda):
     '''
     RIDGE Ridge Regression.
@@ -16,5 +17,16 @@ def ridge(X, y, lmbda):
     w = np.zeros((P + 1, 1))
     # YOUR CODE HERE
     # begin answer
+    D = np.vstack((np.ones((1, N)), X))
+    in_matrix = np.zeros((P, N))
+    for i in range(N):
+        if y[0, i] > 0:
+            pos = 1
+        else:
+            pos = 0
+        in_matrix[pos, i] = 1
+
+    w = np.matmul(np.matmul(np.linalg.pinv(np.matmul(D, D.T) + lmbda * np.eye(P+1, P+1)), D), in_matrix.T)
+    w = w[:, 1] - w[:, 0]
     # end answer
     return w

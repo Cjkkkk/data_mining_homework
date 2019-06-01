@@ -1,4 +1,14 @@
 import numpy as np
+import scipy.optimize as opt
+
+
+def cont(w, X, y):
+    return np.multiply(y[0, :], np.matmul(w.T, X)) - 1
+
+
+def func(w):
+    return 0.5 * (np.linalg.norm(w[1:, ]) ** 2)
+
 
 def svm(X, y):
     '''
@@ -12,7 +22,7 @@ def svm(X, y):
 
     '''
     P, N = X.shape
-    w = np.zeros((P + 1, 1))
+    w = np.ones((P + 1, 1))
     num = 0
 
     # YOUR CODE HERE
@@ -20,6 +30,12 @@ def svm(X, y):
     # it within 20 lines of code. The optimization should converge wtih any method
     # that support constrain.
     # begin answer
+    D = np.vstack((np.ones((1, N)), X))
+    cons = {'type': 'ineq', 'fun': cont, 'args': (D, y)}
+    res = opt.minimize(func, w, constraints=cons, method='SLSQP')
+
+    # 计算support vector的数目
+    num = len(list(filter(lambda x: 0.95 < x < 1.05, np.multiply(y[0, :], np.matmul(w.T, D))[0, :])))
     # end answer
-    return w, num
+    return res.x, num
 
