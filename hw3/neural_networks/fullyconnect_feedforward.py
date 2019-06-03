@@ -15,8 +15,7 @@ def fullyconnect_feedforward(in_, weight, bias):
     # TODO
 
     # begin answer
-    out = np.matmul(in_, weight) + bias
-    # print(in_.shape, weight.shape, out.shape)
+    out = np.matmul(in_, weight) + bias.T
     # end answer
 
     return out

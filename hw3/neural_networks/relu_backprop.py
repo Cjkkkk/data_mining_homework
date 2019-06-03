@@ -14,6 +14,8 @@ def relu_backprop(in_sensitivity, in_):
     # TODO
 
     # begin answer
+    out_sensitivity = np.copy(in_sensitivity)
+    out_sensitivity[in_ < 0] = 0
     # end answer
     return out_sensitivity
 

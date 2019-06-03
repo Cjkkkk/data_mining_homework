@@ -1,7 +1,6 @@
 import scipy.io as sio
 import numpy as np
 from feedforward_backprop import feedforward_backprop
-
 digit_data = sio.loadmat('digit_data.mat')
 X = digit_data['X']
 y = digit_data['y']

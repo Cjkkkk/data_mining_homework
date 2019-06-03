@@ -15,7 +15,6 @@ def hack(img_name):
     '''
 
     data = np.load('hack_data.npz')
-
     # YOUR CODE HERE (you can delete the following code as you wish)
     x_train = data['x_train']
     y_train = data['y_train']
@@ -29,7 +28,6 @@ def hack(img_name):
 
     # 显示图片和得到的结果
     show_image.show_image(x)
-    print(y)
     # end answer
 
     return y.reshape((1, 5))

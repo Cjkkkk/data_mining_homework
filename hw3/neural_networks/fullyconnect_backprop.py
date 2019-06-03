@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def fullyconnect_backprop(in_sensitivity, in_, weight):
     '''
     The backpropagation process of fullyconnect
@@ -23,7 +24,10 @@ def fullyconnect_backprop(in_sensitivity, in_, weight):
     # TODO
 
     # begin answer
+    # num_images = in_.shape[0]
+    weight_grad = np.matmul(in_.T, in_sensitivity) / 10
+    bias_grad = np.matmul(np.ones((1, in_sensitivity.shape[0])), in_sensitivity).T / 10
+    out_sensitivity = np.matmul(in_sensitivity, weight.T) / 10
     # end answer
 
     return weight_grad, bias_grad, out_sensitivity
-

@@ -9,3 +9,4 @@ def show_image(x):
     num = x.shape[0]
     x = x.reshape(num, 14, 10).transpose(1, 0, 2).reshape(14, num * 10)
     plt.imshow(x, cmap='gray')
+    plt.show()

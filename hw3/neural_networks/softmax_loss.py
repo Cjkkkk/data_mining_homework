@@ -13,6 +13,9 @@ def softmax_loss(in_, label):
           sentivity     : the sentivity for in, shape: [number of images, number of kinds of labels]
     '''
     n, k = in_.shape
+    # a = np.array([[1,2,3],[4,5,6]])
+    # np.tile(np.max(a, axis=1, keepdims=True), (1, 3))
+    # [[3,3,3],[6,6,6]]
     in_ = in_ - np.tile(np.max(in_, axis=1, keepdims=True), (1, k))
     h = np.exp(in_)
     total = np.sum(h, axis=1, keepdims=True)

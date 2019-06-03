@@ -12,6 +12,7 @@ def relu_feedforward(in_):
     # TODO
 
     # begin answer
-    out = in_[in_ <= 0] = 0
+    out = np.copy(in_)
+    out[out < 0] = 0
     # end answer
     return out
