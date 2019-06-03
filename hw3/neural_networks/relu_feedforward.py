@@ -12,5 +12,6 @@ def relu_feedforward(in_):
     # TODO
 
     # begin answer
+    out = in_[in_ <= 0] = 0
     # end answer
     return out

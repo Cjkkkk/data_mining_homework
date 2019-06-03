@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def fullyconnect_feedforward(in_, weight, bias):
     '''
     The feedward process of fullyconnect
@@ -14,7 +15,8 @@ def fullyconnect_feedforward(in_, weight, bias):
     # TODO
 
     # begin answer
+    out = np.matmul(in_, weight) + bias
+    # print(in_.shape, weight.shape, out.shape)
     # end answer
 
     return out
-
