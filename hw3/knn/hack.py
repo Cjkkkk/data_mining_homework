@@ -24,7 +24,7 @@ def hack(img_name):
     # 切割图片
     x = extract_image.extract_image(img_name)
     # 找出图片的数字
-    y = knn.knn(x, x_train, y_train, 20)
+    y = knn.knn(x, x_train, y_train, 10)
 
     # 显示图片和得到的结果
     show_image.show_image(x)

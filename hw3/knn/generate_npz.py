@@ -7,6 +7,7 @@ data = {
     'x_train': np.zeros((100*5, 140)),
     'y_train': np.zeros((100*5, )),
 }
+# 读取数据和标签，生成npz文件
 for i in range(num_images):
     # 处理图片
     image_data = extract_image.extract_image('data/' + str(i) + '.jpg')
