@@ -2,7 +2,6 @@ import numpy as np
 import pca
 import matplotlib.pyplot as plt
 import math
-from scipy import ndimage
 from PIL import Image
 
 
@@ -16,7 +15,11 @@ def hack_pca(filename):
     Output: img -- image without rotation
     '''
     img_r = (plt.imread(filename)).astype(np.float64)
+
+    # 转为灰度图像
     gray = rgb2gray(img_r)
+
+    # 找到所有有颜色的点
     colored_point = []
     h, w = gray.shape
     for i in range(h):
