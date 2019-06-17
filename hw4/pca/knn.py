@@ -22,4 +22,18 @@ def knn(x, x_train, y_train, k):
     # begin answer
     # end answer
 
+    N_test, P = x.shape
+    N_train, _ = x_train.shape
+
+    y = np.zeros((N_test,))
+    for i in range(N_test):
+        # 计算test中的每一个点的k个最近的点
+        idx = np.argpartition(
+            np.array([np.sum(np.square(x[i, :] - x_train[j, :])) for j in range(N_train)])
+            , k)[:k]
+        # 找到每个标签中出现的次数
+        values, counts = np.unique(y_train[idx], return_counts=True)
+        # 投票找出最大值
+        y[i] = values[np.argmax(counts)]
+    # end answer
     return y

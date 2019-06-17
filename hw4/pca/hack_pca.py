@@ -1,6 +1,13 @@
 import numpy as np
 import pca
 import matplotlib.pyplot as plt
+import math
+from scipy import ndimage
+from PIL import Image
+
+
+def rgb2gray(rgb):
+    return np.dot(rgb[..., :3], [0.2989, 0.5870, 0.1140])
 
 
 def hack_pca(filename):
@@ -9,25 +16,20 @@ def hack_pca(filename):
     Output: img -- image without rotation
     '''
     img_r = (plt.imread(filename)).astype(np.float64)
-    # YOUR CODE HERE
-    # begin answer
-    h, w, d = img_r.shape[0], img_r.shape[1], img_r.shape[2]
-    img_r_reshape = img_r.reshape((h * w, d))
-    value, vector = pca.PCA(img_r_reshape)
+    gray = rgb2gray(img_r)
+    colored_point = []
+    h, w = gray.shape
+    for i in range(h):
+        for j in range(w):
+            if gray[i, j] > 1:
+                colored_point.append([i, j])
 
-    # 求出均值和方差
-    mean = np.mean(img_r_reshape, axis=0)
-    # std = np.std(img_r_reshape)
-
-    # 取前三个特征向量
-    A = vector[:, 0:3]
-    image = (np.matmul(np.matmul((img_r_reshape - mean), A), A.T)) + mean
-
-    # 去除不符合的元素
-    image = image.astype(np.int)
-    image[image < 0] = 0
-    image[image > 255] = 255
-
+    colored_point = np.array(colored_point)
+    eigen_values, eigen_vectors = pca.PCA(colored_point)
     # 重新生成图片
-    return image.reshape((h, w, d))
+    degree = math.atan(eigen_vectors[1, 0] / eigen_vectors[0, 0]) / math.pi * 180
+    degree = 90 - degree if degree > 0 else - 90 - degree
+    print("rotate degree: ", degree)
+    img = Image.fromarray(img_r.astype('uint8'))
+    return img, img.rotate(degree)
     # end answer
